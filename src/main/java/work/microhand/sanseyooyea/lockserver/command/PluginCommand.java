@@ -11,40 +11,29 @@ import org.jetbrains.annotations.NotNull;
 public class PluginCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        if (args.length == 0) {
-            HelpCommand.sendHelpMessage(sender);
-            return true;
-        }
+        String flag = args[0].toLowerCase();
 
-        if (args.length == 1) {
-            if ("help".equalsIgnoreCase(args[0])) {
+        switch (flag) {
+            case "help":
                 HelpCommand.sendHelpMessage(sender);
-                return true;
-            }
-
-            if ("lock".equalsIgnoreCase(args[0])) {
+                break;
+            case "lock":
                 LockCommand.lock(sender);
-                return true;
-            }
-
-            if ("unlock".equalsIgnoreCase(args[0])) {
+                break;
+            case "unlock":
                 UnlockCommand.unlock(sender);
-                return true;
-            }
-
-            if ("check".equalsIgnoreCase(args[0])) {
+                break;
+            case "check":
                 CheckCommand.check(sender);
-                return true;
-            }
-
-            if ("reload".equalsIgnoreCase(args[0])) {
+                break;
+            case "reload":
                 ReloadCommand.reload(sender);
-                return true;
-            }
+                break;
+            default:
+                sender.sendMessage("§c| 无效的指令！");
+                HelpCommand.sendHelpMessage(sender);
+                break;
         }
-
-        sender.sendMessage("§c| 未知指令！");
-        HelpCommand.sendHelpMessage(sender);
 
         return true;
     }

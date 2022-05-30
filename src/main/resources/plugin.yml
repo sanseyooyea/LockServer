@@ -1,0 +1,11 @@
+name: LockServer
+version: '${version}'
+main: work.microhand.sanseyooyea.lockserver.LockServer
+api-version: 1.16
+authors: [ SanseYooyea ]
+description: Ban new player join the server when lock the server
+commands:
+  ls:
+    description: the main command of the plugin
+    usage: /ls help
+    permission: lockserver.admin
